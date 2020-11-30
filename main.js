@@ -24,6 +24,9 @@ var appConfig = {
 
 var game = new Phaser.Game(appConfig);
 
+var screenCenterX;
+var screenCenterY;
+
 function preload() {
   // Notes
   // -------------------------------
@@ -32,10 +35,23 @@ function preload() {
   //
   // How to create some common game objects.
   // API Doc: photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObjectFactory.html
+  //
+  // About physics
+  // API Doc: photonstorm.github.io/phaser3-docs/Phaser.Physics.Arcade.ArcadePhysics.html
+  //
+  // Nice refs
+  // - phaser.io/examples/v3
+  // - rexrainbow.github.io/phaser3-rex-notes/docs/site/
+  // - medium.com/analytics-vidhya/getting-started-with-phaserjs-a81f1e228108
   // -------------------------------
+
+  screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+  screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 }
 
 function create() {
+  this.add.text(screenCenterX, screenCenterY, '윤재용 일병님 포에버!');
+
   this.input.on('pointerdown', (pointer) => {
     createBouncingRect(this, pointer.x, pointer.y);
   }, this);
