@@ -3,6 +3,7 @@ var appConfig = {
   width: 1080,
   height: 1920,
   parent: 'phaser-app',
+  backgroundColor: 0x000000,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
@@ -24,21 +25,34 @@ var appConfig = {
 var game = new Phaser.Game(appConfig);
 
 function preload() {
-
+  // Notes
+  // -------------------------------
+  // `this` is a scene object.
+  // API Doc: photonstorm.github.io/phaser3-docs/Phaser.Scene.html
+  //
+  // How to create some common game objects.
+  // API Doc: photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObjectFactory.html
+  // -------------------------------
 }
 
 function create() {
-  var rec1 = this.add.rectangle(200, 150, 148, 148, 0x6666ff);
+  this.input.on('pointerdown', (pointer) => {
+    createBouncingRect(this, pointer.x, pointer.y);
+  }, this);
+}
 
-  this.physics.add.existing(rec1);
+function update() {
+
+}
+
+function createBouncingRect(scene, posX, posY) {
+  var rec1 = scene.add.rectangle(posX, posY, 148, 148, 0x6666ff);
+
+  scene.physics.add.existing(rec1);
 
   rec1.body.velocity.x = 500;
   rec1.body.velocity.y = 500;
   rec1.body.bounce.x = 1;
   rec1.body.bounce.y = 1;
   rec1.body.collideWorldBounds = true;
-}
-
-function update() {
-
 }
