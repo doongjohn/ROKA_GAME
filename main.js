@@ -11,7 +11,7 @@ var appConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { y: 200 }
+      gravity: { y: 0 }
     }
   },
   scene: {
@@ -24,7 +24,7 @@ var appConfig = {
 var game = new Phaser.Game(appConfig);
 
 function preload() {
-  
+
 }
 
 function create() {
@@ -32,8 +32,8 @@ function create() {
 
   this.physics.add.existing(rec1);
 
-  rec1.body.velocity.x = 100;
-  rec1.body.velocity.y = 100;
+  rec1.body.velocity.x = 500;
+  rec1.body.velocity.y = 500;
   rec1.body.bounce.x = 1;
   rec1.body.bounce.y = 1;
   rec1.body.collideWorldBounds = true;
