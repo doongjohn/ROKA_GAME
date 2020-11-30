@@ -24,11 +24,19 @@ var appConfig = {
 var game = new Phaser.Game(appConfig);
 
 function preload() {
-  console.log(game.scale);
+  
 }
 
 function create() {
+  var rec1 = this.add.rectangle(200, 150, 148, 148, 0x6666ff);
 
+  this.physics.add.existing(rec1);
+
+  rec1.body.velocity.x = 100;
+  rec1.body.velocity.y = 100;
+  rec1.body.bounce.x = 1;
+  rec1.body.bounce.y = 1;
+  rec1.body.collideWorldBounds = true;
 }
 
 function update() {
