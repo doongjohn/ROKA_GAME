@@ -50,7 +50,40 @@ function preload() {
 }
 
 function create() {
-  this.add.text(screenCenterX, screenCenterY, '윤재용 일병님 포에버!');
+  var textConfig = {
+    x: screenCenterX,
+    y: screenCenterY,
+    padding: {
+      // left: 64,
+      // right: 16,
+      // top: 20,
+      // bottom: 40
+      // x: 32,    // 32px padding on the left/right
+      // y: 16     // 16px padding on the top/bottom
+    },
+    text: '윤재용 일병님 포에버!',
+    style: {
+      fontSize: '64px',
+      fontFamily: 'Arial',
+      color: '#ffffff',
+      align: 'right',  // 'left'|'center'|'right'|'justify'
+      // backgroundColor: '#ff00ff'
+    },
+    addToScene: true
+  };
+
+  // var testText = this.make.text(textConfig);
+  // testText.setPosition(screenCenterX -= (testText.displayWidth / 2), screenCenterY)
+
+  var testText2 = this.add.text(screenCenterX, screenCenterY, '윤재용 일병님 포에버!', {
+    align: 'center',
+    fontSize: '64px',
+    padding: {
+      left: 64,
+      right: 64
+    }
+  });
+  testText2.setPosition(screenCenterX -= (testText2.displayWidth / 2), screenCenterY)
 
   this.input.on('pointerdown', (pointer) => {
     createBouncingRect(this, pointer.x, pointer.y);
