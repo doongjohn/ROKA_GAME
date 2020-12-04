@@ -1,3 +1,22 @@
+// This is a mobile game made with Phaser 3
+
+// Notes
+// -------------------------------
+// Use scene object to spawn objects.
+// API Doc: photonstorm.github.io/phaser3-docs/Phaser.Scene.html
+//
+// How to create some common game objects.
+// API Doc: photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObjectFactory.html
+//
+// About physics
+// API Doc: photonstorm.github.io/phaser3-docs/Phaser.Physics.Arcade.ArcadePhysics.html
+//
+// Nice refs
+// - phaser.io/examples/v3
+// - rexrainbow.github.io/phaser3-rex-notes/docs/site/
+// - medium.com/analytics-vidhya/getting-started-with-phaserjs-a81f1e228108
+// -------------------------------
+
 var appConfig = {
   type: Phaser.AUTO,
   width: 1080,
@@ -5,6 +24,7 @@ var appConfig = {
   parent: 'phaser-app',
   backgroundColor: 0x000000,
   scale: {
+    // keep screen aspect ratio
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
@@ -28,23 +48,7 @@ var screenCenterX;
 var screenCenterY;
 
 function preload() {
-  // Notes
-  // -------------------------------
-  // `this` is a scene object.
-  // API Doc: photonstorm.github.io/phaser3-docs/Phaser.Scene.html
-  //
-  // How to create some common game objects.
-  // API Doc: photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObjectFactory.html
-  //
-  // About physics
-  // API Doc: photonstorm.github.io/phaser3-docs/Phaser.Physics.Arcade.ArcadePhysics.html
-  //
-  // Nice refs
-  // - phaser.io/examples/v3
-  // - rexrainbow.github.io/phaser3-rex-notes/docs/site/
-  // - medium.com/analytics-vidhya/getting-started-with-phaserjs-a81f1e228108
-  // -------------------------------
-
+  // setup
   screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
   screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 }
@@ -85,6 +89,7 @@ function create() {
   });
   testText2.setPosition(screenCenterX -= (testText2.displayWidth / 2), screenCenterY)
 
+  // `this` is a scene object.
   this.input.on('pointerdown', (pointer) => {
     createBouncingRect(this, pointer.x, pointer.y);
   }, this);
