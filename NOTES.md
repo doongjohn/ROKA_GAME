@@ -9,9 +9,10 @@ How to create some common game objects. [API Doc](photonstorm.github.io/phaser3-
 About physic [API Doc](photonstorm.github.io/phaser3-docs/Phaser.Physics.Arcade.ArcadePhysics.html)
 
 Nice refs
-- phaser.io/examples/v3
-- rexrainbow.github.io/phaser3-rex-notes/docs/site/
-- medium.com/analytics-vidhya/getting-started-with-phaserjs-a81f1e228108
+- https://www.phaser.io/examples/v3
+- [rexrainbow.github.io/phaser3-rex-notes/docs/site/](rexrainbow.github.io/phaser3-rex-notes/docs/site/)
+- https://www.medium.com/analytics-vidhya/getting-started-with-phaserjs-a81f1e228108
+- https://www.freecodecamp.org/news/how-to-build-a-simple-game-in-the-browser-with-phaser-3-and-typescript-bdc94719135/
 
 ---
 
