@@ -16,9 +16,9 @@ export function preload(scene, posX, posY) {
 }
 
 export function update() {
-  // get walk vector
-  walkInputDir.y = getWalkDir(walkInputDir.y, movementKeys.S, movementKeys.W);
-  walkInputDir.x = getWalkDir(walkInputDir.x, movementKeys.D, movementKeys.A);
+  // get walk vector (for Keyboard)
+  // walkInputDir.y = getWalkDir(walkInputDir.y, movementKeys.S, movementKeys.W);
+  // walkInputDir.x = getWalkDir(walkInputDir.x, movementKeys.D, movementKeys.A);
 
   // set move vector
   moveVec = Utils.mult(walkInputDir.clone().normalize(), moveSpeed);
@@ -28,6 +28,7 @@ export function updatePhysics() {
   player.body.velocity = moveVec;
 }
 
+// (for Keyboard)
 function getWalkDir(inputDir, plusKey, minusKey) {
   var dir = inputDir;
   if (!plusKey.isDown && !minusKey.isDown) {

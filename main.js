@@ -40,6 +40,7 @@ let screenLBot;
 let screenRBot;
 
 function preload() {
+  // setup variables
   scene = this;
   screenCenter = new Phaser.Math.Vector2(scene.cameras.main.worldView.x + scene.cameras.main.width / 2, scene.cameras.main.worldView.y + scene.cameras.main.height / 2)
   screenLTop = new Phaser.Math.Vector2(0, 0);
@@ -47,11 +48,11 @@ function preload() {
   screenLBot = new Phaser.Math.Vector2(0, scene.cameras.main.worldView.y + scene.cameras.main.height);
   screenRBot = new Phaser.Math.Vector2(scene.cameras.main.worldView.x + scene.cameras.main.width, scene.cameras.main.worldView.y + scene.cameras.main.height);
 
+  // load images
+  this.load.image('ui-arrow-right', 'assets/ui-arrow-right.png');
+
   // init player
   Player.preload(scene, screenCenter.x, screenCenter.y);
-
-  // load image
-  this.load.image('ui-arrow-right', 'assets/ui-arrow-right.png');
 }
 
 function create() {
@@ -73,10 +74,20 @@ function create() {
   testText.setPosition(screenCenter.x - (testText.displayWidth / 2), screenCenter.y)
   testText.depth = 1;
 
-  var uiArrowRight = this.add.image(screenRBot.x - 160, screenRBot.y - 160, 'ui-arrow-right').setScale(10);
+  var uiArrowRight = this.add.image(screenRBot.x - 160, screenRBot.y - 160, 'ui-arrow-right').setScale(10).setInteractive();
+  uiArrowRight.depth = 999;
 
-  var uiArrowLeft = this.add.image(screenLBot.x + 160, screenLBot.y - 160, 'ui-arrow-right').setScale(10);
+  var uiArrowLeft = this.add.image(screenLBot.x + 160, screenLBot.y - 160, 'ui-arrow-right').setScale(10).setInteractive();
+  uiArrowLeft.depth = 999;
   uiArrowLeft.flipX = true;
+
+  uiArrowRight.on('pointerdown', (pointer) => {
+    Player.walkInputDir.x = 1;
+  });
+
+  uiArrowLeft.on('pointerdown', (pointer) => {
+    Player.walkInputDir.x = -1;
+  });
 }
 
 function update() {
