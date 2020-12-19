@@ -8,7 +8,7 @@ export var moveVec = Phaser.Math.Vector2.ZERO;
 export var walkInputDir = Phaser.Math.Vector2.ZERO;
 
 
-export function init(scene, posX, posY) {
+export function preload(scene, posX, posY) {
   player = scene.add.rectangle(posX, posY, 148, 148, 0x116fff);
   scene.physics.add.existing(player);
   player.body.collideWorldBounds = true;

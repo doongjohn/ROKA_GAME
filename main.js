@@ -1,5 +1,6 @@
 import * as Utils from "./modules/utils.js"
 import * as Player from "./modules/player.js"
+import * as UI from "./modules/ui.js"
 
 
 // app config
@@ -9,6 +10,7 @@ var appConfig = {
   height: 1920,
   parent: 'phaser-app',
   backgroundColor: 0x000000,
+  pixelArt: true,
   scale: {
     // keep screen aspect ratio
     mode: Phaser.Scale.FIT,
@@ -31,14 +33,25 @@ var appConfig = {
 // variables
 var game = new Phaser.Game(appConfig);
 var scene;
-let screenCenterX;
-let screenCenterY;
+let screenCenter;
+let screenLTop;
+let screenRTop;
+let screenLBot;
+let screenRBot;
 
 function preload() {
   scene = this;
-  screenCenterX = scene.cameras.main.worldView.x + scene.cameras.main.width / 2;
-  screenCenterY = scene.cameras.main.worldView.y + scene.cameras.main.height / 2;
-  Player.init(scene, screenCenterX, screenCenterY);
+  screenCenter = new Phaser.Math.Vector2(scene.cameras.main.worldView.x + scene.cameras.main.width / 2, scene.cameras.main.worldView.y + scene.cameras.main.height / 2)
+  screenLTop = new Phaser.Math.Vector2(0, 0);
+  screenRTop = new Phaser.Math.Vector2(scene.cameras.main.worldView.x + scene.cameras.main.width, 0);
+  screenLBot = new Phaser.Math.Vector2(0, scene.cameras.main.worldView.y + scene.cameras.main.height);
+  screenRBot = new Phaser.Math.Vector2(scene.cameras.main.worldView.x + scene.cameras.main.width, scene.cameras.main.worldView.y + scene.cameras.main.height);
+
+  // init player
+  Player.preload(scene, screenCenter.x, screenCenter.y);
+
+  // load image
+  this.load.image('ui-arrow-right', 'assets/ui-arrow-right.png');
 }
 
 function create() {
@@ -57,8 +70,13 @@ function create() {
 
   // `this` is a scene object.
   var testText = this.make.text(textConfig);
-  testText.setPosition(screenCenterX - (testText.displayWidth / 2), screenCenterY)
+  testText.setPosition(screenCenter.x - (testText.displayWidth / 2), screenCenter.y)
   testText.depth = 1;
+
+  var uiArrowRight = this.add.image(screenRBot.x - 160, screenRBot.y - 160, 'ui-arrow-right').setScale(10);
+
+  var uiArrowLeft = this.add.image(screenLBot.x + 160, screenLBot.y - 160, 'ui-arrow-right').setScale(10);
+  uiArrowLeft.flipX = true;
 }
 
 function update() {
